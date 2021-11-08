@@ -1,0 +1,24 @@
+FROM jupyter/pyspark-notebook
+
+USER 0
+WORKDIR /build
+
+# install conda requirements
+
+COPY environment.yml .
+RUN conda env update --name base --file environment.yml --prune
+
+#install pip requirements
+
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+
+#setup custom spark cluster config
+COPY spark_conf /build/spark_conf
+ENV SPARK_CONF_DIR=/build/spark_conf
+
+EXPOSE 8888
+EXPOSE 4040
+
+WORKDIR /app
