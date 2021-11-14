@@ -1,4 +1,5 @@
-git.PHONY: bash clean _clean-test _clean-pyc _clean-build
+git
+.PHONY: bash clean _clean-test _clean-pyc _clean-build
 
 bash: ## open bash in running container
 	bash
