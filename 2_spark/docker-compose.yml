@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/app
+    environment:
+      - PYTHON 
+      - TZ=America/New_York
+    ports:
+      - 8888:8888
+      - 4040:4040
+    ulimits:
+      nofile:
+        soft: 20000
+        hard: 40000
+    tty: true
+          
